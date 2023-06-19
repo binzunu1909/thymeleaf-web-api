@@ -1,23 +1,27 @@
-package no.restaff.thymeleafwebapi.entity;
+package no.restaff.schoolmanagement.entity;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.lang.annotation.Documented;
-
-@Data
-@Document(collection = "students")
+@Entity
+@Table( name = "students" )
 public class Student {
-    @Id
+
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column( name = "first_name", nullable = false)
     private String firstName;
+
+    @Column( name = "last_name")
     private String lastName;
+
+    @Column( name = "email")
     private String email;
 
-    public Student() {
-    }
+    public Student() {}
 
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -56,4 +60,5 @@ public class Student {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
